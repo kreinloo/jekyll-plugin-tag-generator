@@ -33,9 +33,13 @@ module Jekyll
       site.pages << index
     end
     def copy_layout_file(site)
-      dir =  File.join(site.source, '_layouts')
-      Dir.mkdir(dir) unless File.exists?(dir) and File.directory?(dir)
-      FileUtils.cp(File.join(site.theme.layouts_path, 'tag_index.html'), dir)
+      dir = File.join(site.source, '_layouts')
+      if !File.exists?(dir) && !File.directory?(dir)
+        Dir.mkdir(dir)
+      end
+      if !File.exists(File.join(dir, 'tag_index.html'))
+        FileUtils.cp(File.join(site.theme.layouts_path, 'tag_index.html'), dir)
+      end
     end
   end
 end
