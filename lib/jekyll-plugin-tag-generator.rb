@@ -37,7 +37,7 @@ module Jekyll
       if !File.exists?(dir) && !File.directory?(dir)
         Dir.mkdir(dir)
       end
-      if !File.exists(File.join(dir, 'tag_index.html'))
+      if !File.exists?(File.join(dir, 'tag_index.html'))
         FileUtils.cp(File.join(site.theme.layouts_path, 'tag_index.html'), dir)
       end
     end
